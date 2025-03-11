@@ -18,7 +18,7 @@ import (
 // The optional parameter <recursive> specifies whether monitoring the <path> recursively,
 // which is true in default.
 func (w *Watcher) Add(path string, callbackFunc func(event *Event), recursive ...bool) (callback *Callback, err error) {
-	return w.AddOnce("", path, callbackFunc, recursive...)
+	return w.AddOnce("default", path, callbackFunc, recursive...)
 }
 
 // AddOnce monitors <path> with callback function <callbackFunc> only once using unique name

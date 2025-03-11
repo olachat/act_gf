@@ -333,7 +333,7 @@ func (m *Manager) init() {
 			}
 		}
 		// Monitor changes of i18n files for hot reload feature.
-		_, _ = gfsnotify.Add(path, func(event *gfsnotify.Event) {
+		_, _ = gfsnotify.Add(m.options.Path, func(event *gfsnotify.Event) {
 			// Any changes of i18n files, clear the data.
 			m.mu.Lock()
 			m.data = nil
