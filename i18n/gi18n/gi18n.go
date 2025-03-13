@@ -32,6 +32,10 @@ func SetDelimiters(left, right string) {
 	defaultManager.SetDelimiters(left, right)
 }
 
+func Init() {
+	defaultManager.Init()
+}
+
 // T is alias of Translate for convenience.
 func T(content string, language ...string) string {
 	return defaultManager.T(content, language...)
