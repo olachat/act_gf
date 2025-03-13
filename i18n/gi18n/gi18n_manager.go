@@ -210,6 +210,10 @@ func (m *Manager) GetContent(key string, language ...string) string {
 	return ""
 }
 
+func (m *Manager) Init() {
+	m.init()
+}
+
 // init initializes the manager for lazy initialization design.
 // The i18n manager is only initialized once.
 func (m *Manager) init() {
