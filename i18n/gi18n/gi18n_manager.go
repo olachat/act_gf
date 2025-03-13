@@ -329,6 +329,7 @@ func (m *Manager) init() {
 					m.data[lang][k] = gconv.String(v)
 				}
 				intlog.Printf("load i18n file '%s' success, lang: '%s'", file, lang)
+				intlog.Printf("load i18n file '%s' success, lang: '%s'\r\n", file, lang)
 			} else {
 				intlog.Errorf("load i18n file '%s' failed: %v", file, err)
 			}
