@@ -9,6 +9,7 @@ package gset
 
 import (
 	"bytes"
+	"github.com/gogf/gf/internal/intlog"
 	"github.com/gogf/gf/internal/json"
 	"github.com/gogf/gf/internal/rwmutex"
 	"github.com/gogf/gf/text/gstr"
@@ -122,10 +123,15 @@ func (set *StrSet) AddIfNotExistFuncLock(item string, f func() bool) bool {
 		if f() {
 			if _, ok := set.data[item]; !ok {
 				set.data[item] = struct{}{}
+				intlog.Errorf("AddIfNotExistFuncLock success: %s", item)
 				return true
 			}
+		} else {
+			intlog.Errorf("AddIfNotExistFuncLock failed: %s", item)
+			return false
 		}
 	}
+	intlog.Errorf("AddIfNotExistFuncLock found: %s", item)
 	return false
 }
 
