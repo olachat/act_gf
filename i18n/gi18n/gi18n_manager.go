@@ -328,7 +328,7 @@ func (m *Manager) init() {
 				for k, v := range j.Map() {
 					m.data[lang][k] = gconv.String(v)
 				}
-				intlog.Printf("load i18n file '%s' success, lang: %s", file, lang)
+				intlog.Printf("load i18n file '%s' success, lang: '%s'", file, lang)
 			} else {
 				intlog.Errorf("load i18n file '%s' failed: %v", file, err)
 			}
@@ -338,7 +338,7 @@ func (m *Manager) init() {
 			// Any changes of i18n files, clear the data.
 			m.mu.Lock()
 			m.data = nil
-			intlog.Printf("i18n gfsnotify event: %+v", event)
+			intlog.Printf("i18n gfsnotify event: %+v, path: '%s'\r\n", event, m.options.Path)
 			m.mu.Unlock()
 			gfsnotify.Exit()
 		})
