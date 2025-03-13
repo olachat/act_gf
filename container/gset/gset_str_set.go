@@ -123,15 +123,17 @@ func (set *StrSet) AddIfNotExistFuncLock(item string, f func() bool) bool {
 		if f() {
 			if _, ok := set.data[item]; !ok {
 				set.data[item] = struct{}{}
-				intlog.Errorf("AddIfNotExistFuncLock success: %s", item)
+				intlog.Printf("AddIfNotExistFuncLock success: %s", item)
 				return true
+			} else {
+				intlog.Printf("AddIfNotExistFuncLock data found: %s", item)
 			}
 		} else {
-			intlog.Errorf("AddIfNotExistFuncLock failed: %s", item)
+			intlog.Printf("AddIfNotExistFuncLock failed: %s", item)
 			return false
 		}
 	}
-	intlog.Errorf("AddIfNotExistFuncLock found: %s", item)
+	intlog.Printf("AddIfNotExistFuncLock found: %s", item)
 	return false
 }
 
