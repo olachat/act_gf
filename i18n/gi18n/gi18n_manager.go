@@ -329,13 +329,12 @@ func (m *Manager) init() {
 					m.data[lang][k] = gconv.String(v)
 				}
 				intlog.Printf("load i18n file '%s' success, lang: '%s'", file, lang)
-				intlog.Printf("load i18n file '%s' success, lang: '%s'\r\n", file, lang)
 			} else {
 				intlog.Errorf("load i18n file '%s' failed: %v", file, err)
 			}
 		}
 		// Monitor changes of i18n files for hot reload feature.
-		_, _ = gfsnotify.Add(m.options.Path, func(event *gfsnotify.Event) {
+		cb, errCb := gfsnotify.Add(m.options.Path, func(event *gfsnotify.Event) {
 			// Any changes of i18n files, clear the data.
 			m.mu.Lock()
 			m.data = nil
@@ -343,5 +342,6 @@ func (m *Manager) init() {
 			m.mu.Unlock()
 			gfsnotify.Exit()
 		})
+		intlog.Printf("i18n add gfsnotify '%v' finish, errCb: '%v'", cb, errCb)
 	}
 }

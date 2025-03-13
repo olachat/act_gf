@@ -181,6 +181,7 @@ func (w *Watcher) RemoveCallback(callbackId int) {
 	if r := callbackIdMap.Get(callbackId); r != nil {
 		callback = r.(*Callback)
 	}
+	intlog.Printf("i18n remove callcack '%v' error", callback)
 	if callback != nil {
 		if r := w.callbacks.Get(callback.Path); r != nil {
 			r.(*glist.List).Remove(callback.elem)
