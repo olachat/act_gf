@@ -328,7 +328,7 @@ func (m *Manager) init() {
 				for k, v := range j.Map() {
 					m.data[lang][k] = gconv.String(v)
 				}
-				intlog.Printf("load i18n file '%s' success, lang: %s\r\n", file, lang)
+				intlog.Printf("load i18n file '%s' success, lang: '%s'\r\n", file, lang)
 			} else {
 				intlog.Errorf("load i18n file '%s' failed: %v", file, err)
 			}
